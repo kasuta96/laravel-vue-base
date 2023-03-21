@@ -8,6 +8,7 @@ import { Head } from '@inertiajs/vue3';
 defineProps({
     mustVerifyEmail: Boolean,
     status: String,
+    isPasswordSet: Boolean,
 });
 </script>
 
@@ -30,7 +31,7 @@ defineProps({
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                    <UpdatePasswordForm class="max-w-xl" />
+                    <UpdatePasswordForm :is-password-set="isPasswordSet" class="max-w-xl" />
                 </div>
 
                 <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">

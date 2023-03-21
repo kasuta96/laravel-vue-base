@@ -51,10 +51,9 @@ const form = useForm({
                 <TextInput
                     id="email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="mt-1 block w-full bg-gray-100"
                     v-model="form.email"
-                    required
-                    autocomplete="username"
+                    disabled
                 />
 
                 <InputError class="mt-2" :message="form.errors.email" />
@@ -85,7 +84,7 @@ const form = useForm({
                 <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
 
                 <Transition enter-from-class="opacity-0" leave-to-class="opacity-0" class="transition ease-in-out">
-                    <p v-if="form.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
+                    <p v-if="form.recentlySuccessful" class="text-sm text-green-600">Saved.</p>
                 </Transition>
             </div>
         </form>

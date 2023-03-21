@@ -6,6 +6,10 @@ import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
+const props = defineProps({
+    isPasswordSet: Boolean,
+});
+
 const passwordInput = ref(null);
 const currentPasswordInput = ref(null);
 
@@ -44,7 +48,7 @@ const updatePassword = () => {
         </header>
 
         <form @submit.prevent="updatePassword" class="mt-6 space-y-6">
-            <div>
+            <div v-if="isPasswordSet">
                 <InputLabel for="current_password" value="Current Password" />
 
                 <TextInput
@@ -92,7 +96,7 @@ const updatePassword = () => {
                 <PrimaryButton :disabled="form.processing">Save</PrimaryButton>
 
                 <Transition enter-from-class="opacity-0" leave-to-class="opacity-0" class="transition ease-in-out">
-                    <p v-if="form.recentlySuccessful" class="text-sm text-gray-600">Saved.</p>
+                    <p v-if="form.recentlySuccessful" class="text-sm text-green-600">Saved.</p>
                 </Transition>
             </div>
         </form>
