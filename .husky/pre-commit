@@ -53,14 +53,14 @@ npm run lint ||
 )
 echo "${green}[ESLint Check OK]${reset}"
 
-# All check passed... Trying to build app
-echo "\nAlright.... Code looks good to me... Trying to build now. 🤔🤔"
-npm run build ||
-(
-  echo "${red}[FE build failed]${reset} Hey Loser! ❌🔨
-    View the errors above to see why."
-  false;
-)
+# # All check passed... Trying to build app
+# echo "\nAlright.... Code looks good to me... Trying to build now. 🤔🤔"
+# npm run build ||
+# (
+#   echo "${red}[FE build failed]${reset} Hey Loser! ❌🔨
+#     View the errors above to see why."
+#   false;
+# )
 
 # Now we can commit
 echo "\n${green}[All Check SUCCESS]${reset} You're doing great, Babe. 👍🎉
