@@ -20,7 +20,7 @@
 3. Open Terminal and go to code directory
 4. Build and run containers
 
-```
+```bash
 docker-compose up --build -d
 ```
 
@@ -65,6 +65,43 @@ vendor/bin/phpunit
 vendor/bin/phpunit --testsuite Feature
 ```
 
+## Check code convention
+
+#### PHP CodeSniffer
+
+```bash
+# Check PHP code for compliance with PSR2 standard by default
+vendor/bin/phpcs -n --standard=phpcs.xml
+# fix code
+vendor/bin/phpcbf
+```
+
+#### PHPMD: problems and issues
+
+```bash
+# phpmd {folder} {report type} {config file}
+vendor/bin/phpmd app,config,routes text phpmd.xml
+```
+
+#### Prettier
+
+```bash
+# Check format
+npm run check-format
+# Fix code format
+npm run format
+```
+
+#### ESlint
+
+```bash
+npm run lint
+```
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Contact
+
+@kasuta96 - kasuta96@gmail.com
