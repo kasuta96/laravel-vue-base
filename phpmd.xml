@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<ruleset
+    name="PHPMD Ruleset"
+    xmlns="http://pmd.sf.net/ruleset/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+    xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+
+    <description>PHPMD ruleset</description>
+
+    <rule ref="rulesets/controversial.xml" />
+
+    <rule ref="rulesets/unusedcode.xml" />
+
+    <rule ref="rulesets/naming.xml">
+        <exclude name="ShortVariable" />
+        <exclude name="LongVariable" />
+        <exclude name="ShortMethodName" />
+        <exclude name="ShortClassName" />
+    </rule>
+
+    <rule ref="rulesets/naming.xml/ShortVariable" since="0.2">
+        <properties>
+            <property name="exceptions" value="id,e,to" />
+            <property name="minimum" value="1" />
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/naming.xml/LongVariable" since="0.2">
+        <properties>
+            <property name="maximum" value="30" />
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/naming.xml/ShortMethodName">
+        <properties>
+            <property name="exceptions" value="to" />
+            <property name="minimum" value="2" />
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/naming.xml/ShortClassName" since="0.2">
+        <properties>
+            <property name="exceptions" value="id,e,to" />
+            <property name="minimum" value="2" />
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/naming.xml/BooleanGetMethodName">
+        <properties>
+            <property name="checkParameterizedMethods" value="true" />
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/codesize.xml/CyclomaticComplexity">
+        <priority>1</priority>
+        <properties>
+            <property name="reportLevel" value="20" />
+        </properties>
+    </rule>
+
+</ruleset>

@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+red=`tput setaf 1`
+green=`tput setaf 2`
+yellow=`tput setaf 3`
+blue=`tput setaf 4`
+magenta=`tput setaf 5`
+cyan=`tput setaf 6`
+bold=`tput bold`
+reset=`tput sgr0`
+
+echo "👷🔍 Checking code convention\n"
+
+# Check phpcs
+./vendor/bin/phpcs -n --standard=phpcs.xml ||
+(
+  echo "${red}[Check phpcs failed]${reset} Your php code styling looks disgusting. 🤢🤮"
+  echo "👷🔨 We tried using phpcbf to fix it\n"
+  ./vendor/bin/phpcbf
+  false;
+)
+echo "${green}[✅ Check phpcs OK]${reset}\n"
+
+# checking phpmd
+./vendor/bin/phpmd app,config,routes text phpmd.xml ||
+(
+  echo "${red}[Check phpmd failed]${reset} Your php code SUCKS. 🤬🖕\n"
+  false;
+)
+echo "${green}[✅ Check phpmd OK]${reset}\n"
+
+# Now we can commit
+echo "${green}[All Check SUCCESS]${reset} You're doing great, Babe. 👍🎉
+  ${cyan}❤️ I am committing this now ❤️${reset}\n"
