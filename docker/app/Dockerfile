@@ -8,6 +8,8 @@ RUN apk update \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer \
     && chmod +x /usr/bin/composer
 
+RUN apk add npm
+
 WORKDIR /var/www/html
 
 COPY . .
@@ -16,10 +18,5 @@ COPY docker/app/conf/php-fpm.conf /etc/php-fpm.conf
 COPY docker/app/conf/php-app.ini /usr/local/etc/php/conf.d/app.ini
 COPY docker/app/conf/supervisord.conf /etc/supervisord.conf
 COPY docker/app/conf/queue.conf /etc/supervisord.d/queue.conf
-
-ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN composer i --optimize-autoloader --no-interaction --no-dev --no-ansi --no-plugins
-
-VOLUME ["/var/www/html"]
 
 ENTRYPOINT ["/bin/sh", "/opt/entrypoint.sh"]
