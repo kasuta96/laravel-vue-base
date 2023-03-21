@@ -10,6 +10,8 @@ cyan=`tput setaf 6`
 bold=`tput bold`
 reset=`tput sgr0`
 
+#===================== PHP =====================
+
 echo "👷🔍 Checking code convention\n"
 
 # Check phpcs
@@ -30,6 +32,36 @@ echo "${green}[✅ Check phpcs OK]${reset}\n"
 )
 echo "${green}[✅ Check phpmd OK]${reset}\n"
 
+#===================== FE =====================
+
+# Check Prettier standards
+npm run check-format ||
+(
+  echo "${red}[Prettier Check Failed]${reset} Your code styling looks disgusting. 🤢🤮
+    1. Run ${cyan}${bold}npm run format${reset} or ${cyan}${bold}yarn format${reset} to fix it,
+    2. Add changes and try commit again."
+  false;
+)
+echo "${green}[Prettier Check OK]${reset}"
+
+# Check ESLint
+npm run lint ||
+(
+  echo "${red}[ESLint Check Failed]${reset} Get that weak shit out of here! 😤❌
+    Make the changes required above and try again."
+  false; 
+)
+echo "${green}[ESLint Check OK]${reset}"
+
+# All check passed... Trying to build app
+echo "\nAlright.... Code looks good to me... Trying to build now. 🤔🤔"
+npm run build ||
+(
+  echo "${red}[FE build failed]${reset} Hey Loser! ❌🔨
+    View the errors above to see why."
+  false;
+)
+
 # Now we can commit
-echo "${green}[All Check SUCCESS]${reset} You're doing great, Babe. 👍🎉
+echo "\n${green}[All Check SUCCESS]${reset} You're doing great, Babe. 👍🎉
   ${cyan}❤️ I am committing this now ❤️${reset}\n"
