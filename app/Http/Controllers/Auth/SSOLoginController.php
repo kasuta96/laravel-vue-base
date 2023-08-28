@@ -45,7 +45,7 @@ class SSOLoginController extends Controller
             'email' => $user->email,
             'provider_token' => $user->token,
             'provider_refresh_token' => $user->name,
-            'avatar' => $user->name,
+            'avatar' => $user->avatar,
         ]);
 
         # Verify email on first time
