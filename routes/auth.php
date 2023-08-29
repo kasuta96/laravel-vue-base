@@ -22,7 +22,7 @@ Route::middleware('guest')->group(function () {
     Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
     Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
 
-    # SSO Login
+    // SSO Login
     Route::get('/login/{provider}', [SSOLoginController::class, 'redirect'])->name('login.sso');
     Route::get('/login/{provider}/callback', [SSOLoginController::class, 'callback']);
 });

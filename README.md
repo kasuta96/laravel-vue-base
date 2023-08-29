@@ -67,13 +67,15 @@ vendor/bin/phpunit --testsuite Feature
 
 ## Check code convention
 
-#### PHP CodeSniffer
+#### Laravel Pint
+
+Check code style with [laravel/pint](https://laravel.com/docs/10.x/pint)
 
 ```bash
-# Check PHP code for compliance with PSR2 standard by default
-vendor/bin/phpcs -n --standard=phpcs.xml
-# fix code
-vendor/bin/phpcbf
+# Check
+vendor/bin/pint --config pint.json --test
+# Fix
+vendor/bin/pint --config pint.json
 ```
 
 #### PHPMD: problems and issues

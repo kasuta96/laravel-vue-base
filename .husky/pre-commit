@@ -14,16 +14,6 @@ reset=`tput sgr0`
 
 echo "👷🔍 Checking code convention\n"
 
-# Check phpcs
-./vendor/bin/phpcs -n --standard=phpcs.xml ||
-(
-  echo "${red}[Check phpcs failed]${reset} Your php code styling looks disgusting. 🤢🤮"
-  echo "👷🔨 We tried using phpcbf to fix it\n"
-  ./vendor/bin/phpcbf
-  false;
-)
-echo "${green}[✅ Check phpcs OK]${reset}\n"
-
 # checking phpmd
 ./vendor/bin/phpmd app,config,routes text phpmd.xml ||
 (
@@ -31,6 +21,16 @@ echo "${green}[✅ Check phpcs OK]${reset}\n"
   false;
 )
 echo "${green}[✅ Check phpmd OK]${reset}\n"
+
+# Check pint
+./vendor/bin/pint --config pint.json --dirty --test ||
+(
+  echo "${red}[Check code style failed]${reset} Your php code styling looks disgusting. 🤢🤮"
+  echo "👷🔨 Run ${cyan}${bold}npm run pint${reset} to fix it"
+  echo "     Then add changes & commit again!\n"
+  false;
+)
+echo "${green}[✅ Check code style OK]${reset}\n"
 
 #===================== FE =====================
 

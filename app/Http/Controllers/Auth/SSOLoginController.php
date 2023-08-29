@@ -25,7 +25,7 @@ class SSOLoginController extends Controller
     {
         $user = Socialite::driver($provider)->user();
 
-        # Check email
+        // Check email
         $currentUser = User::query()
             ->where('email', $user->getEmail())
             ->whereNot('provider', $provider)
@@ -48,8 +48,8 @@ class SSOLoginController extends Controller
             'avatar' => $user->avatar,
         ]);
 
-        # Verify email on first time
-        !$user->hasVerifiedEmail() && $user->markEmailAsVerified();
+        // Verify email on first time
+        ! $user->hasVerifiedEmail() && $user->markEmailAsVerified();
 
         Auth::login($user);
 
